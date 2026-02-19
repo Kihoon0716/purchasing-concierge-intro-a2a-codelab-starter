@@ -16,6 +16,7 @@ limitations under the License.
 
 import asyncio
 import json
+import os
 import uuid
 from typing import Any
 
@@ -62,7 +63,16 @@ Please rely on tools to address the request and don't make up responses.
         self.cards: dict[str, AgentCard] = {}
         self.a2a_client_init_status = False
 
-        self.model = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+        openai_model = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+        openai_base_url = os.getenv("OPENAI_BASE_URL")
+        openai_api_key = os.getenv("OPENAI_API_KEY")
+
+        self.model = ChatOpenAI(
+            model=openai_model,
+            base_url=openai_base_url,
+            api_key=openai_api_key,
+            temperature=0,
+        )
         self.memory = MemorySaver()
         self.graph = create_react_agent(
             self.model,

@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
+import os
 import uuid
 
 from dotenv import load_dotenv
@@ -82,7 +83,16 @@ Provided below is the available burger menu and its related price:
     SUPPORTED_CONTENT_TYPES = ["text", "text/plain"]
 
     def __init__(self):
-        self.model = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+        openai_model = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+        openai_base_url = os.getenv("OPENAI_BASE_URL")
+        openai_api_key = os.getenv("OPENAI_API_KEY")
+
+        self.model = ChatOpenAI(
+            model=openai_model,
+            base_url=openai_base_url,
+            api_key=openai_api_key,
+            temperature=0,
+        )
         self.graph = create_react_agent(
             self.model,
             tools=[create_burger_order],

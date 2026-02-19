@@ -50,9 +50,15 @@ remote_app = agent_engines.create(
         "./purchasing_concierge",
     ],
     env_vars={
-        "OPENAI_API_KEY": os.environ["OPENAI_API_KEY"],
-        "PIZZA_SELLER_AGENT_URL": os.environ["PIZZA_SELLER_AGENT_URL"],
-        "BURGER_SELLER_AGENT_URL": os.environ["BURGER_SELLER_AGENT_URL"],
+        key: value
+        for key, value in {
+            "OPENAI_API_KEY": os.getenv("OPENAI_API_KEY"),
+            "OPENAI_BASE_URL": os.getenv("OPENAI_BASE_URL"),
+            "OPENAI_MODEL": os.getenv("OPENAI_MODEL"),
+            "PIZZA_SELLER_AGENT_URL": os.environ["PIZZA_SELLER_AGENT_URL"],
+            "BURGER_SELLER_AGENT_URL": os.environ["BURGER_SELLER_AGENT_URL"],
+        }.items()
+        if value is not None
     },
 )
 

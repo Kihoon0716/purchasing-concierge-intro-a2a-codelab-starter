@@ -39,6 +39,8 @@ First, we need to run the remote seller agents. We have two remote seller agents
 
     ```bash
     OPENAI_API_KEY={your-openai-api-key}
+    OPENAI_BASE_URL={optional-openai-compatible-base-url}
+    OPENAI_MODEL=gpt-4o-mini
     ```
 
 3. Run the burger agent.
@@ -58,6 +60,8 @@ First, we need to run the remote seller agents. We have two remote seller agents
 
     ```bash
     OPENAI_API_KEY={your-openai-api-key}
+    OPENAI_BASE_URL={optional-openai-compatible-base-url}
+    OPENAI_MODEL=gpt-4o-mini
     ```
 
 3. Run the pizza agent.
@@ -83,6 +87,8 @@ Finally, we can run our A2A client capabilities owned by purchasing concierge ag
     PIZZA_SELLER_AGENT_URL=http://localhost:10000
     BURGER_SELLER_AGENT_URL=http://localhost:10001
     OPENAI_API_KEY={your-openai-api-key}
+    OPENAI_BASE_URL={optional-openai-compatible-base-url}
+    OPENAI_MODEL=gpt-4o-mini
     ```
 
 4. Run the chat interface for the purchasing concierge
@@ -137,6 +143,8 @@ gcloud run deploy pizza-agent \
 
     ```bash
     OPENAI_API_KEY={your-openai-api-key}
+    OPENAI_BASE_URL={optional-openai-compatible-base-url}
+    OPENAI_MODEL=gpt-4o-mini
     STAGING_BUCKET=gs://purchasing-concierge-{your-project-id}
     PIZZA_SELLER_AGENT_URL={your-pizza-agent-url}
     BURGER_SELLER_AGENT_URL={your-burger-agent-url}
