@@ -1,3 +1,3 @@
 # Burger Agent
 
-This is a remote seller agent that built on top of Crew AI.
+This is a remote seller agent that built on top of LangGraph + ChatOpenAI.

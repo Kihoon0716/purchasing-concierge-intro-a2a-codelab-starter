@@ -34,7 +34,7 @@ vertexai.init(
 )
 
 adk_app = reasoning_engines.AdkApp(
-    agent=root_agent,
+    agent=root_agent.graph,
 )
 
 remote_app = agent_engines.create(
@@ -42,14 +42,15 @@ remote_app = agent_engines.create(
     display_name="purchasing-concierge",
     requirements=[
         "google-cloud-aiplatform[agent_engines]",
-        "google-adk==1.15.1",
+        "langchain-openai>=0.3.27",
+        "langgraph>=0.3.34",
         "a2a-sdk==0.2.16",
     ],
     extra_packages=[
         "./purchasing_concierge",
     ],
     env_vars={
-        "GOOGLE_GENAI_USE_VERTEXAI": os.environ["GOOGLE_GENAI_USE_VERTEXAI"],
+        "OPENAI_API_KEY": os.environ["OPENAI_API_KEY"],
         "PIZZA_SELLER_AGENT_URL": os.environ["PIZZA_SELLER_AGENT_URL"],
         "BURGER_SELLER_AGENT_URL": os.environ["BURGER_SELLER_AGENT_URL"],
     },
